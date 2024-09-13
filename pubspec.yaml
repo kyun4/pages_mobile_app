@@ -99,6 +99,8 @@ flutter:
       - assets/svg/filter-svgrepo-com.svg
       - assets/svg/messaging-lines-svgrepo-com.svg
       - assets/svg/chat-dots-svgrepo-com.svg
+      - assets/svg/mobile-alt-1-svgrepo-com.svg
+      - assets/svg/heart-pulse-svgrepo-com.svg
       - assets/images/pageslogo-orange1.png
       - assets/images/catnip1.png
   #   - images/a_dot_ham.jpeg

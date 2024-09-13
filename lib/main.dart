@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pagesapp/components/authGate.dart';
-import 'package:pagesapp/pages/login.dart';
 
 void main() {
   runApp(const MyApp());

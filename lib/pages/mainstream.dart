@@ -2,9 +2,14 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pagesapp/components/drawer.dart';
+import 'package:pagesapp/components/mainstream_card.dart';
 import 'package:pagesapp/components/pillcategory.dart';
 import 'package:pagesapp/components/textfield_search.dart';
+import 'package:pagesapp/pages/account_menu.dart';
+import 'package:pagesapp/pages/compose_post.dart';
 import 'package:pagesapp/pages/login.dart';
+import 'package:pagesapp/pages/messaging.dart';
 import 'package:pagesapp/pages/profile.dart';
 
 class MainStream extends StatefulWidget {
@@ -54,25 +59,41 @@ class _MainStreamState extends State<MainStream> {
                 ),
                 Text('Welcome',
                     style:
-                        TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 Text(' Catnip!',
                     style:
-                        TextStyle(fontSize: 24, fontWeight: FontWeight.w400)),
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.w400)),
                 Expanded(
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Container(
-                          alignment: Alignment.centerRight,
-                          margin: const EdgeInsets.only(right: 10),
-                          child: SvgPicture.asset(
-                              'assets/svg/chat-dots-svgrepo-com.svg')),
-                      Container(
-                          alignment: Alignment.centerRight,
-                          margin: const EdgeInsets.only(right: 10),
-                          child: SvgPicture.asset(
-                              'assets/svg/hamburger-4-svgrepo-com.svg'))
+                      GestureDetector(
+                        onTap: () => {
+                          Navigator.pushReplacement(context,
+                              MaterialPageRoute(builder: (context) {
+                            return Messaging();
+                          }))
+                        },
+                        child: Container(
+                            alignment: Alignment.centerRight,
+                            margin: const EdgeInsets.only(right: 24),
+                            child: SvgPicture.asset(
+                                'assets/svg/chat-dots-svgrepo-com.svg')),
+                      ),
+                      GestureDetector(
+                        onTap: () => {
+                          Navigator.pushReplacement(context,
+                              MaterialPageRoute(builder: (context) {
+                            return AccountMenu();
+                          }))
+                        },
+                        child: Container(
+                            alignment: Alignment.centerRight,
+                            margin: const EdgeInsets.only(right: 5),
+                            child: SvgPicture.asset(
+                                'assets/svg/hamburger-4-svgrepo-com.svg')),
+                      )
                     ],
                   ),
                 )
@@ -100,7 +121,7 @@ class _MainStreamState extends State<MainStream> {
                             onTap: () => {
                                   Navigator.pushReplacement(context,
                                       MaterialPageRoute(builder: (context) {
-                                    return const Profile();
+                                    return const ComposePost();
                                   }))
                                 },
                             child: Container(
@@ -110,7 +131,7 @@ class _MainStreamState extends State<MainStream> {
             ),
           ),
           Container(
-              margin: const EdgeInsets.only(top: 18, left: 20, right: 20),
+              margin: const EdgeInsets.only(top: 18, left: 20),
               height: 35,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
@@ -121,19 +142,12 @@ class _MainStreamState extends State<MainStream> {
                         isSelected: index < 1 ? true : false);
                   })),
           Expanded(
-            child: Container(
-                child: Container(child: Row(children: [])),
-                margin: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.black.withOpacity(0.1),
-                          spreadRadius: 7,
-                          blurRadius: 15,
-                          offset: Offset(4, 4))
-                    ],
-                    color: const Color.fromARGB(255, 245, 244, 242),
-                    borderRadius: BorderRadius.circular(20))),
+            child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return const MainstreamCard();
+                }),
           )
         ]),
       ),
