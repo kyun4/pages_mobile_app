@@ -97,6 +97,9 @@ flutter:
       - assets/svg/hamburger-svgrepo-com.svg
       - assets/svg/plus-circle-1441-svgrepo-com.svg
       - assets/svg/filter-svgrepo-com.svg
+      - assets/svg/messaging-lines-svgrepo-com.svg
+      - assets/svg/chat-dots-svgrepo-com.svg
+      - assets/images/pageslogo-orange1.png
       - assets/images/catnip1.png
   #   - images/a_dot_ham.jpeg
 

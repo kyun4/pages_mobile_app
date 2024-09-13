@@ -30,10 +30,10 @@ class _LoginState extends State<Login> {
             child: Container(
                 child: Column(children: [
           Container(
-              height: 100,
-              width: 75,
+              height: 150,
+              width: 125,
               margin: const EdgeInsets.only(top: 35, bottom: 5),
-              child: SvgPicture.asset('assets/svg/pages-svgrepo-com-02.svg')),
+              child: Image.asset('assets/images/pageslogo-orange1.png')),
           SizedBox(
               height: 70,
               child: Text('Pages',

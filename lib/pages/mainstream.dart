@@ -59,11 +59,22 @@ class _MainStreamState extends State<MainStream> {
                     style:
                         TextStyle(fontSize: 24, fontWeight: FontWeight.w400)),
                 Expanded(
-                  child: Container(
-                      alignment: Alignment.centerRight,
-                      margin: const EdgeInsets.only(right: 10),
-                      child: SvgPicture.asset(
-                          'assets/svg/hamburger-4-svgrepo-com.svg')),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                          alignment: Alignment.centerRight,
+                          margin: const EdgeInsets.only(right: 10),
+                          child: SvgPicture.asset(
+                              'assets/svg/chat-dots-svgrepo-com.svg')),
+                      Container(
+                          alignment: Alignment.centerRight,
+                          margin: const EdgeInsets.only(right: 10),
+                          child: SvgPicture.asset(
+                              'assets/svg/hamburger-4-svgrepo-com.svg'))
+                    ],
+                  ),
                 )
               ],
             ),
