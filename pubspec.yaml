@@ -103,6 +103,7 @@ flutter:
       - assets/svg/heart-pulse-svgrepo-com.svg
       - assets/images/pageslogo-orange1.png
       - assets/images/catnip1.png
+      - assets/images/patricksample1.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:pagesapp/components/mainstream_user_profile.dart';
 
 class MainstreamCard extends StatefulWidget {
   const MainstreamCard({super.key});
@@ -14,7 +15,7 @@ class _MainstreamCardState extends State<MainstreamCard> {
     return Container(
       width: MediaQuery.of(context).size.width,
       child: Container(
-          margin: const EdgeInsets.all(20),
+          margin: const EdgeInsets.only(left: 8, top: 20, bottom: 10),
           decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
@@ -25,7 +26,25 @@ class _MainstreamCardState extends State<MainstreamCard> {
               ],
               color: const Color.fromARGB(255, 245, 244, 242),
               borderRadius: BorderRadius.circular(12)),
-          child: Container(child: Row(children: []))),
+          child: Container(
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                MainstreamUserProfile(
+                  ImageString: 'assets/images/patricksample1.jpg',
+                  userDisplayName: 'Patrick',
+                  userDisplaySubtitle: 'Friend',
+                ),
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Container(
+                      margin: const EdgeInsets.only(left: 10),
+                      child: Text('What a great cat day!')),
+                  Container(
+                      margin: const EdgeInsets.all(10),
+                      child: Image.asset('assets/images/catnip1.png',
+                          width: MediaQuery.of(context).size.width))
+                ])
+              ]))),
     );
   }
 }

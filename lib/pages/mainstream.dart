@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:pagesapp/components/drawer.dart';
 import 'package:pagesapp/components/mainstream_card.dart';
 import 'package:pagesapp/components/pillcategory.dart';
 import 'package:pagesapp/components/textfield_search.dart';
@@ -130,17 +129,20 @@ class _MainStreamState extends State<MainStream> {
                   ]),
             ),
           ),
-          Container(
-              margin: const EdgeInsets.only(top: 18, left: 20),
-              height: 35,
-              child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: mainstreamCategories.length,
-                  itemBuilder: (context, index) {
-                    return PillCategory(
-                        categoryName: mainstreamCategories[index],
-                        isSelected: index < 1 ? true : false);
-                  })),
+          Visibility(
+            visible: false,
+            child: Container(
+                margin: const EdgeInsets.only(top: 18, left: 20),
+                height: 35,
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: mainstreamCategories.length,
+                    itemBuilder: (context, index) {
+                      return PillCategory(
+                          categoryName: mainstreamCategories[index],
+                          isSelected: index < 1 ? true : false);
+                    })),
+          ),
           Expanded(
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
