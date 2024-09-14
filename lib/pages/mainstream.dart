@@ -130,7 +130,7 @@ class _MainStreamState extends State<MainStream> {
             ),
           ),
           Visibility(
-            visible: false,
+            visible: true,
             child: Container(
                 margin: const EdgeInsets.only(top: 18, left: 20),
                 height: 35,

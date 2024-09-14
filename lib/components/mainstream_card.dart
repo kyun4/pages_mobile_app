@@ -39,10 +39,15 @@ class _MainstreamCardState extends State<MainstreamCard> {
                   Container(
                       margin: const EdgeInsets.only(left: 10),
                       child: Text('What a great cat day!')),
-                  Container(
-                      margin: const EdgeInsets.all(10),
-                      child: Image.asset('assets/images/catnip1.png',
-                          width: MediaQuery.of(context).size.width))
+                  ClipRRect(
+                    child: Container(
+                        height: MediaQuery.of(context).size.height - 380,
+                        width: MediaQuery.of(context).size.width,
+                        margin: const EdgeInsets.all(10),
+                        child: Image.asset('assets/images/catnip1.png',
+                            width: MediaQuery.of(context).size.width,
+                            fit: BoxFit.cover)),
+                  )
                 ])
               ]))),
     );
