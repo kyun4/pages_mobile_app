@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pagesapp/pages/login.dart';
 
 class MainstreamUserProfile extends StatefulWidget {
   final String ImageString;
@@ -14,6 +16,41 @@ class MainstreamUserProfile extends StatefulWidget {
   @override
   State<MainstreamUserProfile> createState() => _MainstreamUserProfileState();
 }
+
+void _showDialog(String postUserDisplay, BuildContext contextHere) {
+  showDialog(
+      context: contextHere,
+      builder: (BuildContext context) {
+        return AlertDialog(
+            title: Text('' + postUserDisplay.toString() + '\'s Post Options',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
+            content: Container(
+              height: 60,
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    GestureDetector(
+                        onTap: () => {Navigator.of(context).pop()},
+                        child: Container(child: Text('Hide'))),
+                    GestureDetector(
+                        onTap: () => {Navigator.of(context).pop()},
+                        child: Container(child: Text('Report'))),
+                    GestureDetector(
+                        onTap: () => {Navigator.of(context).pop()},
+                        child: Container(child: Text('Move to Self Tags')))
+                  ]),
+            ),
+            actions: [
+              TextButton(
+                  iconAlignment: IconAlignment.start,
+                  child: Text('Cancel'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  })
+            ]);
+      });
+} // _showDialog for Logout
 
 class _MainstreamUserProfileState extends State<MainstreamUserProfile> {
   @override
@@ -45,7 +82,14 @@ class _MainstreamUserProfileState extends State<MainstreamUserProfile> {
                         style: TextStyle(
                             fontWeight: FontWeight.w400, fontSize: 10)),
                   ),
-                ]))
+                ])),
+            SizedBox(width: MediaQuery.of(context).size.width - 185),
+            GestureDetector(
+              onTap: () => {_showDialog('Patrick', context)},
+              child: Container(
+                  child: SvgPicture.asset(
+                      'assets/svg/dots-vertical-svgrepo-com.svg')),
+            )
           ]))
     ]));
   }

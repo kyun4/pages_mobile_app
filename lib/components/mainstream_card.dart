@@ -74,7 +74,13 @@ class _MainstreamCardState extends State<MainstreamCard> {
                       imageAssetUrl:
                           'assets/svg/sad-but-relieved-face-svgrepo-com.svg',
                       emojiCount: '0',
-                    )
+                    ),
+                    SizedBox(width: MediaQuery.of(context).size.width - 280),
+                    Container(
+                        margin: const EdgeInsets.only(bottom: 8),
+                        child: SvgPicture.asset(
+                            'assets/svg/comments-svgrepo-com.svg',
+                            height: 20))
                   ]))
                 ])
               ]))),

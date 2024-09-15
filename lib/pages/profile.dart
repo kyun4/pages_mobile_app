@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pagesapp/components/buttonSecondary.dart';
+
 import 'package:pagesapp/pages/login.dart';
 import 'package:pagesapp/pages/mainstream.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
@@ -23,6 +24,32 @@ class _ProfileState extends State<Profile> {
     final qrCode = QrCode(8, QrErrorCorrectLevel.H)..addData('mangkanor');
     qrImage = QrImage(qrCode);
   }
+
+  void _showDialog() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+              title: Text('catnip32 | itsftac@gmail.com'),
+              content: Text('Do you want to logout?'),
+              actions: [
+                TextButton(
+                    child: Text('Cancel'),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    }),
+                TextButton(
+                    child: Text('OK'),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) {
+                        return Login();
+                      }));
+                    })
+              ]);
+        });
+  } // _showDialog for Logout
 
   @override
   Widget build(BuildContext context) {
@@ -133,10 +160,11 @@ class _ProfileState extends State<Profile> {
                             ]))),
                     GestureDetector(
                         onTap: () => {
-                              Navigator.pushReplacement(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return Login();
-                              }))
+                              // Navigator.pushReplacement(context,
+                              //     MaterialPageRoute(builder: (context) {
+                              //   return Login();
+                              // }))
+                              _showDialog()
                             },
                         child: ButtonSecondary(
                           buttonText: 'Logout',
