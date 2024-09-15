@@ -132,7 +132,7 @@ class _MainStreamState extends State<MainStream> {
           Visibility(
             visible: true,
             child: Container(
-                margin: const EdgeInsets.only(top: 18, left: 20),
+                margin: const EdgeInsets.only(top: 18, left: 20, bottom: 10),
                 height: 35,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
@@ -145,7 +145,7 @@ class _MainStreamState extends State<MainStream> {
           ),
           Expanded(
             child: ListView.builder(
-                scrollDirection: Axis.horizontal,
+                scrollDirection: Axis.vertical,
                 itemCount: 10,
                 itemBuilder: (context, index) {
                   return const MainstreamCard();
