@@ -12,7 +12,8 @@ class AuthGate extends StatefulWidget {
 class _AuthGateState extends State<AuthGate> {
   @override
   bool isLoggedIn = false;
+  @override
   Widget build(BuildContext context) {
-    return isLoggedIn ? MainStream() : Login();
+    return isLoggedIn ? const MainStream() : const Login();
   }
 }

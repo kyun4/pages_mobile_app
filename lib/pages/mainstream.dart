@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pagesapp/components/mainstream_card.dart';
@@ -18,18 +19,37 @@ class MainStream extends StatefulWidget {
   State<MainStream> createState() => _MainStreamState();
 }
 
+Widget _categoryBuilderList() {
+  return StreamBuilder<QuerySnapshot>(
+      stream:
+          FirebaseFirestore.instance.collection('category_list').snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return const Text('Firestore Error');
+        }
+
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Text('...');
+        }
+
+        return ListView(
+          scrollDirection: Axis.horizontal,
+          children: snapshot.data!.docs
+              .map<Widget>((doc) => categoryBuilderItem(doc))
+              .toList(),
+        );
+      });
+}
+
+Widget categoryBuilderItem(DocumentSnapshot document) {
+  Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
+
+  return PillCategory(categoryName: data['category_name'], isSelected: false);
+}
+
 class _MainStreamState extends State<MainStream> {
-  TextEditingController searchController = new TextEditingController();
-  List<String> mainstreamCategories = [
-    'All',
-    'Sports',
-    'ICT News',
-    'Implementors',
-    'Webinars',
-    'Kanorific',
-    'Bold',
-    'Cute Cats'
-  ];
+  TextEditingController searchController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,10 +76,10 @@ class _MainStreamState extends State<MainStream> {
                             fit: BoxFit.cover, height: 35, width: 35)),
                   ),
                 ),
-                Text('Welcome',
+                const Text('Welcome',
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                Text(' Catnip!',
+                const Text(' Catnip!',
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.w400)),
                 Expanded(
@@ -71,7 +91,7 @@ class _MainStreamState extends State<MainStream> {
                         onTap: () => {
                           Navigator.pushReplacement(context,
                               MaterialPageRoute(builder: (context) {
-                            return Messaging();
+                            return const Messaging();
                           }))
                         },
                         child: Container(
@@ -84,7 +104,7 @@ class _MainStreamState extends State<MainStream> {
                         onTap: () => {
                           Navigator.pushReplacement(context,
                               MaterialPageRoute(builder: (context) {
-                            return AccountMenu();
+                            return const AccountMenu();
                           }))
                         },
                         child: Container(
@@ -134,14 +154,7 @@ class _MainStreamState extends State<MainStream> {
             child: Container(
                 margin: const EdgeInsets.only(top: 18, left: 20, bottom: 10),
                 height: 35,
-                child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: mainstreamCategories.length,
-                    itemBuilder: (context, index) {
-                      return PillCategory(
-                          categoryName: mainstreamCategories[index],
-                          isSelected: index < 1 ? true : false);
-                    })),
+                child: _categoryBuilderList()),
           ),
           Expanded(
             child: ListView.builder(
