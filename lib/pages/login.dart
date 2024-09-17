@@ -1,9 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:pagesapp/components/authGate.dart';
 
 import 'package:pagesapp/components/button.dart';
 import 'package:pagesapp/components/textfield.dart';
 import 'package:pagesapp/pages/mainstream.dart';
 import 'package:pagesapp/pages/signup.dart';
+import 'package:pagesapp/services/authService.dart';
+import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -14,8 +18,19 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   @override
-  TextEditingController usernameController = new TextEditingController();
-  TextEditingController passwordController = new TextEditingController();
+  final usernameController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  void signIn() async {
+    final authService = Provider.of<AuthService>(context, listen: false);
+    try {
+      await authService.signInWithEmailAndPassword(
+          usernameController.text, passwordController.text);
+    } catch (e) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.toString())));
+    }
+  }
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,12 +74,7 @@ class _LoginState extends State<Login> {
           ),
           SizedBox(width: 10, child: Container(height: 10)),
           GestureDetector(
-              onTap: () => {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) {
-                      return const MainStream();
-                    }))
-                  },
+              onTap: () => {signIn()},
               child: ButtonCustom(ButtonText: 'Submit')),
           SizedBox(width: 10, child: Container(height: 20)),
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [

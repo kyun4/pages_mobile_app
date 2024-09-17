@@ -44,7 +44,9 @@ Widget _categoryBuilderList() {
 Widget categoryBuilderItem(DocumentSnapshot document) {
   Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
 
-  return PillCategory(categoryName: data['category_name'], isSelected: false);
+
+
+  return PillCategory(categoryName: data['category_name'], isSelected: data['category_name'] == "All" ? true : false);
 }
 
 class _MainStreamState extends State<MainStream> {

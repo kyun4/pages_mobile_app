@@ -34,7 +34,7 @@ class _SignUpState extends State<SignUp> {
           height: 85,
           width: 55,
           margin: const EdgeInsets.only(top: 30, bottom: 5),
-          child: SvgPicture.asset('assets/svg/pages-svgrepo-com-02.svg')),
+          child: Image.asset('assets/images/pageslogo-orange1.png')),
       SizedBox(
           height: 70,
           child: Text('Pages | Signup',

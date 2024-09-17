@@ -1,10 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pagesapp/components/authGate.dart';
 import 'package:pagesapp/components/buttonSecondary.dart';
 
 import 'package:pagesapp/pages/login.dart';
 import 'package:pagesapp/pages/mainstream.dart';
+import 'package:pagesapp/services/authService.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
+import 'package:provider/provider.dart';
 
 @protected
 late QrImage qrImage;
@@ -25,6 +29,12 @@ class _ProfileState extends State<Profile> {
     qrImage = QrImage(qrCode);
   }
 
+  Future<void> signOut() async {
+    final authService = Provider.of<AuthService>(context, listen: false);
+    await authService.signOut();
+    AuthGate();
+  } // signOut()
+
   void _showDialog() {
     showDialog(
         context: context,
@@ -40,8 +50,10 @@ class _ProfileState extends State<Profile> {
                     }),
                 TextButton(
                     child: Text('OK'),
-                    onPressed: () {
+                    onPressed: () async {
                       Navigator.of(context).pop();
+
+                      await signOut();
                       Navigator.pushReplacement(context,
                           MaterialPageRoute(builder: (context) {
                         return Login();
